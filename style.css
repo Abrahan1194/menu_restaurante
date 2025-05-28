@@ -1,0 +1,648 @@
+/* Restablecimientos básicos y estilos globales */
+:root {
+    --primary-color: #74ACDF; /* Azul claro, bandera argentina */
+    --secondary-color: #FFFFFF; /* Blanco, bandera argentina */
+    --accent-color: #FFD700; /* Dorado, Sol de Mayo */
+    --text-dark: #36454F; /* Gris carbón para texto principal */
+    --text-light: #F8F8F8; /* Blanco descolorido para texto sobre fondos oscuros */
+    --font-heading: 'Georgia', serif;
+    --font-body: 'Arial', sans-serif;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--secondary-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-align: center;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 3em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    padding-top: 50px; /* Para asegurar espacio después del header fijo */
+}
+
+.section-subtitle {
+    font-size: 1.3em;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+}
+
+.header {
+    
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 15px 0;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.header__img{
+    margin-left: 40%;
+    border-radius: 50%;
+}
+
+.header .header__logo {
+    text-align:center;
+    font-family: var(--font-heading);
+    font-size: 2.2em;
+    font-weight: bold;
+    color: var(--accent-color);
+    width: 100%;
+}
+
+.header__nav {
+    margin-right: 20px;
+}
+
+.header__nav a {
+    color: var(--text-light);
+    margin-left: 30px;
+    font-size: 1.1em;
+    font-weight: 500;
+    position: relative;
+}
+
+.header__nav a::after {
+    /* Establece el contenido del pseudo-elemento en vacío. Es necesario para que el pseudo-elemento sea visible. */
+    content: '';
+    /* Posiciona el pseudo-elemento de forma absoluta con respecto a su ancestro posicionado más cercano (en este caso, .header__nav a). */
+    position: absolute;
+    /* Inicialmente, el ancho es 0, lo que significa que la línea no es visible. */
+    width: 0;
+    /* Define la altura de la línea (2 píxeles). */
+    height: 2px;
+    /* Establece el color de fondo de la línea utilizando una variable CSS (--accent-color). */
+    background: var(--accent-color);
+    /* Posiciona el pseudo-elemento a la izquierda del elemento padre. */
+    left: 0;
+    /* Posiciona el pseudo-elemento 5 píxeles por debajo de la parte inferior del elemento padre. */
+    bottom: -5px;
+    /* Aplica una transición suave al cambio de ancho durante 0.2 segundos con una función de temporización "ease-in-out". */
+    transition: width 0.2s ease-in-out;
+}
+
+.header__nav a:hover::after {
+    /* Cuando el cursor se posa sobre el enlace (.header__nav a), el ancho del pseudo-elemento se expande al 100%. */
+    width: 100%;
+}
+/* --- Hero Section (Manteniendo los estilos anteriores) --- */
+.hero {
+    position: relative;
+    height: 60vh; /* Ajustado un poco para dar más espacio al contenido de abajo */
+    background: url('principal.jpeg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-light);
+    margin-top: 70px; /* Para la cabecera fija */
+}
+
+.hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+.hero__title {
+    font-family: var(--font-heading);
+    font-size: 4em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero__subtitle {
+    font-size: 1.8em;
+    font-style: italic;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* --- Estilos para la Sección de Restaurantes (restaurantes.html) --- */
+/* Se reusan algunas clases del footer porque en el HTML original estaban así nombradas.
+   En un proyecto real, se recomendaría usar nombres más genéricos para las secciones. */
+
+.container  .footer__title { /* Encabezado "SUR" en la página de restaurantes/contacto */
+    font-size: 3.5em;
+    color: var(--accent-color);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.container  h2 { /* Subtítulo "Parrilla y Vinos" */
+    font-size: 1.8em;
+    color: var(--accent-color);
+    margin-bottom: 40px;
+}
+
+.footer__contact-info { /* Cada tarjeta de restaurante/contacto */
+    background-color: var(--text-light);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer__contact-info:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.footer__contact-info .menu-card__image { /* Imagen dentro de la tarjeta de restaurante */
+    width: 100%;
+    height: 250px; /* Altura generosa para las fotos de los restaurantes */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.footer__contact-info p {
+    font-size: 1.1em;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.footer__contact-info p:last-child {
+    margin-bottom: 0;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+
+/* --- Estilos para la Sección de Contacto (contacto.html) --- */
+
+.contact-section {
+    padding: 60px 0;
+    margin-top: -70px; /* Compensa el padding-top del section-title */
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas: info y formulario */
+    gap: 50px; /* Espacio entre columnas */
+    align-items: flex-start; /* Alinea los elementos al inicio de la grilla */
+    margin-bottom: 60px;
+}
+
+.contact-details, .contact-form {
+    background-color: var(--text-light);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+}
+
+.contact-details h3, .contact-form h3 {
+    font-family: var(--font-heading);
+    font-size: 2em;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.contact-details p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.contact-details p strong {
+    color: var(--text-dark);
+}
+
+.social-links {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.social-links h4 {
+    font-size: 1.2em;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.social-links a {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 0 10px;
+    color: var(--primary-color);
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+}
+
+/* Estilos del formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1em;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: var(--font-body);
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(116, 172, 223, 0.5); /* Sombra suave con el color primario */
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar solo verticalmente */
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+    color: var(--text-dark); /* Cambia el color del texto a oscuro en hover para el botón dorado */
+    transform: translateY(-2px);
+}
+
+/* Estilos del mapa */
+.map-container {
+    margin-top: 60px;
+    background-color: var(--text-light);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+}
+
+.map-container h3 {
+    font-family: var(--font-heading);
+    font-size: 2em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.map-container iframe {
+    border-radius: 5px;
+}
+
+/* --- Estilos para la Sección de Horarios (horarios.html) --- */
+.foofooter__hours {
+    padding: 60px 0;
+    margin-top: -70px; /* Compensa el padding-top del section-title */
+}
+
+.footer__hours {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas responsivas */
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.footer__hours {
+    background-color: var(--text-light);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer__hours:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-unit);
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+/* Menu Section (Nuestra Carta) */
+.menu-section {
+    padding: 4rem 0;
+    background-color: var(--light-color);
+}
+
+.section-title {
+    font-family: var(--font-family-heading);
+    text-align: center;
+   
+}
+
+.section-subtitle {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas responsivas */
+    gap: 2rem;
+}
+
+.menu-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+}
+
+.menu-card__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    border-bottom: 1px solid #eee;
+}
+
+.menu-card__content {
+    padding: 1.5rem;
+}
+
+.menu-card__title {
+    font-family: var(--font-family-heading);
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.menu-card__description {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.menu-card__price {
+    font-family: var(--font-family-heading);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: right;
+    margin-top: 1.5rem;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .header {
+        
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header__nav {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding-top: var(--spacing-unit);
+    }
+
+    .header__nav a {
+        padding: 10px var(--spacing-unit);
+        width: calc(100% - 2 * var(--spacing-unit)); /* Ocupa todo el ancho disponible menos el padding */
+    }
+
+    .hero__title {
+        font-size: 2.5rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1.2rem;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr; /* Una columna en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero__title {
+        font-size: 2rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+
+
+/* --- Footer Styles (Manteniendo los estilos anteriores) --- */
+.footer {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 10px 0;
+    text-align: center;
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer__title {
+    font-family: var(--font-heading);
+    font-size: 2.8em;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+}
+
+.footer__subtitle {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: var(--text-light);
+}
+
+.footer__philosophy {
+    max-width: 600px;
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    color: var(--text-light);
+}
+
+.footer__newsletter h4 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+}
+
+.footer__social {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer__social p {
+    font-size: 1em;
+    color: var(--text-light);
+}
+
+.footer__social a {
+    color: var(--text-light);
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+.footer__social a:hover {
+    color: var(--accent-color);
+}
+
+.footer__social span {
+    color: var(--text-light);
+}
+
+.footer__copyright {
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: rgba(248, 248, 248, 0.7);
+}
+
+
+
+
+
+@media (max-width: 480px) { /* Móviles muy pequeños */
+    .header__logo {
+        font-size: 1.8em;
+    }
+
+    .header__nav a {
+        font-size: 0.9em;
+        margin: 0 10px;
+    }
+
+    .hero__title {
+        font-size: 2em;
+    }
+
+    .hero__subtitle {
+        font-size: 1.1em;
+    }
+
+    .section-title {
+        font-size: 2em;
+    }
+
+    .footer__contact-info {
+        padding: 15px;
+    }
+    .footer__contact-info p {
+        font-size: 0.9em;
+    }
+    .footer__contact-info .menu-card__image {
+        height: 150px;
+    }
+
+    /* Contacto */
+    .contact-details, .contact-form {
+        padding: 20px;
+    }
+    .btn {
+        width: 100%; /* Botón de enviar ocupa todo el ancho */
+    }
+    .map-container {
+        margin-top: 30px;
+    }
+}
